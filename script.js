@@ -637,6 +637,24 @@ if (typeof gsap !== "undefined") {
       ease: "power2.out",
     });
   });
+
+  // Blog cards animation
+  gsap.utils.toArray(".blog-card").forEach((card, index) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 90%",
+        end: "top 65%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 60,
+      scale: 0.95,
+      duration: 0.8,
+      delay: index * 0.15,
+      ease: "power3.out",
+    });
+  });
 }
 
 // ===== Smooth Scroll for All Navigation Links =====
@@ -673,4 +691,6 @@ allNavLinks.forEach((link) => {
 // ===== Initialize =====
 console.log("Sample Corp - Initialized with GSAP");
 console.log("Built with HTML, CSS, JavaScript, and GSAP");
-console.log("New sections: Portfolio, Partners, Pricing, Testimonials, FAQ");
+console.log(
+  "New sections: Portfolio, Partners, Pricing, Testimonials, Blog, FAQ"
+);
