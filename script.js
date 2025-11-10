@@ -4,7 +4,6 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section');
-const contactForm = document.getElementById('contact-form');
 const statNumbers = document.querySelectorAll('.stat-number');
 
 // ===== Navbar Scroll Effect =====
@@ -146,96 +145,8 @@ const animateOnScroll = () => {
     });
 };
 
-// Initialize scroll animations
-animateOnScroll();
-
-// ===== Contact Form Handling =====
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', { name, email, message });
-
-    // Show success message
-    showNotification('メッセージを送信しました！ありがとうございます。', 'success');
-
-    // Reset form
-    contactForm.reset();
-});
-
-// ===== Notification System =====
-const showNotification = (message, type = 'success') => {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 9999;
-        animation: slideIn 0.3s ease-out;
-        max-width: 300px;
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-out';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 3000);
-};
-
-// Add notification animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ===== Parallax Effect for Hero Section =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroContent = document.querySelector('.hero-content');
-
-    if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - scrolled / 700;
-    }
-});
+// Initialize scroll animations (will be replaced by GSAP)
+// animateOnScroll();
 
 // ===== Add loading animation =====
 window.addEventListener('load', () => {
@@ -255,6 +166,264 @@ const debounce = (func, wait) => {
     };
 };
 
+// ===== GSAP Animations =====
+if (typeof gsap !== 'undefined') {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animations
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    heroTimeline
+        .from('.hero-badge', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8
+        })
+        .from('.title-line', {
+            opacity: 0,
+            y: 80,
+            duration: 1,
+            stagger: 0.2
+        }, '-=0.5')
+        .from('.hero-subtitle', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8
+        }, '-=0.6')
+        .from('.hero-buttons', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8
+        }, '-=0.6')
+        .from('.hero-stats', {
+            opacity: 0,
+            y: 40,
+            duration: 0.8
+        }, '-=0.6')
+        .from('.scroll-indicator', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6
+        }, '-=0.4');
+
+    // Section animations - fade up on scroll
+    gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+            scrollTrigger: {
+                trigger: header,
+                start: 'top 85%',
+                end: 'top 60%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 60,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    });
+
+    // Service cards animation
+    gsap.utils.toArray('.service-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                end: 'top 65%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 80,
+            duration: 0.8,
+            delay: index * 0.1,
+            ease: 'power3.out'
+        });
+    });
+
+    // Team cards animation
+    gsap.utils.toArray('.team-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                end: 'top 65%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 80,
+            scale: 0.9,
+            duration: 0.8,
+            delay: index * 0.15,
+            ease: 'back.out(1.7)'
+        });
+    });
+
+    // About section animation
+    gsap.from('.about-text', {
+        scrollTrigger: {
+            trigger: '.about-text',
+            start: 'top 80%',
+            end: 'top 55%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        x: -80,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    gsap.from('.about-image', {
+        scrollTrigger: {
+            trigger: '.about-image',
+            start: 'top 80%',
+            end: 'top 55%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        x: 80,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    // Stat items animation
+    gsap.utils.toArray('.stat-item').forEach((stat, index) => {
+        gsap.from(stat, {
+            scrollTrigger: {
+                trigger: stat,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: 'power2.out'
+        });
+    });
+
+    // Footer animation
+    gsap.from('.footer-section', {
+        scrollTrigger: {
+            trigger: '.footer',
+            start: 'top 90%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+
+    // Parallax effect for hero content
+    gsap.to('.hero-content', {
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+        },
+        y: 200,
+        opacity: 0.3,
+        ease: 'none'
+    });
+
+    // Parallax effect for gradient orbs
+    gsap.to('.orb-1', {
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5
+        },
+        y: 150,
+        x: -50,
+        ease: 'none'
+    });
+
+    gsap.to('.orb-2', {
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 2
+        },
+        y: 100,
+        x: 50,
+        ease: 'none'
+    });
+
+    gsap.to('.orb-3', {
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+        },
+        y: 200,
+        ease: 'none'
+    });
+}
+
+// ===== Create Floating Particles =====
+const createParticles = () => {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+
+    const particleCount = 30;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const animationDuration = Math.random() * 20 + 15;
+        const delay = Math.random() * 5;
+        const opacity = Math.random() * 0.5 + 0.2;
+
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: white;
+            border-radius: 50%;
+            left: ${left}%;
+            top: 100%;
+            opacity: ${opacity};
+            animation: float-up ${animationDuration}s ${delay}s infinite ease-in;
+            box-shadow: 0 0 ${size * 2}px rgba(255, 255, 255, 0.5);
+        `;
+
+        particlesContainer.appendChild(particle);
+    }
+
+    // Add particle animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+};
+
+// Initialize particles
+createParticles();
+
 // ===== Initialize =====
-console.log('TechVision Corporate Site - Initialized');
-console.log('Built with HTML, CSS, and JavaScript');
+console.log('Sample Corp - Initialized with GSAP');
+console.log('Built with HTML, CSS, JavaScript, and GSAP');
