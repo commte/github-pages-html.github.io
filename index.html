@@ -32,17 +32,49 @@
 
     <!-- ヒーローセクション -->
     <section id="home" class="hero">
+        <div class="hero-bg-animated">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-particles" id="particles"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title animate-fade-in">AIで作成したサンプルページ</h1>
-            <p class="hero-subtitle animate-fade-in">これはClaude AIによって生成されたデモンストレーション用のコーポレートサイトです</p>
-            <div class="hero-buttons animate-fade-in">
-                <a href="#services" class="btn btn-primary">サービスを見る</a>
-                <a href="#about" class="btn btn-secondary">会社概要</a>
+            <div class="hero-badge">AI-Powered Experience</div>
+            <h1 class="hero-title">
+                <span class="title-line">革新的な</span>
+                <span class="title-line">ソリューション</span>
+            </h1>
+            <p class="hero-subtitle">テクノロジーとクリエイティビティの融合で、ビジネスの未来を創造します</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">
+                    <span>サービスを見る</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <span>詳しく見る</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">150+</span>
+                    <span class="stat-label">プロジェクト</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">50+</span>
+                    <span class="stat-label">クライアント</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">10+</span>
+                    <span class="stat-label">受賞歴</span>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator">
             <span></span>
+            <p>Scroll</p>
         </div>
     </section>
 
@@ -263,6 +295,9 @@
         </div>
     </footer>
 
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
