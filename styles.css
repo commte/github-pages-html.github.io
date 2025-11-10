@@ -368,11 +368,15 @@ ul {
     display: flex;
     gap: 4rem;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 2rem 4rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 800px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-stats .stat {
@@ -835,6 +839,8 @@ ul {
     .hero-stats {
         gap: 2rem;
         flex-wrap: wrap;
+        min-width: auto;
+        padding: 2rem;
     }
 
     .hero-stats .stat-value {
