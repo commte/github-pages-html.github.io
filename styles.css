@@ -974,24 +974,26 @@ ul {
   overflow: hidden;
   border-radius: 16px;
   aspect-ratio: 4/3;
+  background-color: #94a3b8;
 }
 
-.portfolio-placeholder {
+.portfolio-image img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
+  display: block;
   transition: transform 0.5s ease;
 }
 
-.portfolio-placeholder svg {
+.portfolio-image svg {
   width: 100%;
   height: 100%;
   display: block;
+  transition: transform 0.5s ease;
 }
 
-.portfolio-item:hover .portfolio-placeholder {
+.portfolio-item:hover .portfolio-image img,
+.portfolio-item:hover .portfolio-image svg {
   transform: scale(1.1);
 }
 
@@ -1424,24 +1426,26 @@ ul {
   width: 100%;
   aspect-ratio: 16/10;
   overflow: hidden;
+  background-color: #94a3b8;
 }
 
-.blog-placeholder {
+.blog-image img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.blog-placeholder svg {
+.blog-image svg {
   width: 100%;
   height: 100%;
   display: block;
   transition: transform 0.5s ease;
 }
 
-.blog-card:hover .blog-placeholder svg {
+.blog-card:hover .blog-image img,
+.blog-card:hover .blog-image svg {
   transform: scale(1.1);
 }
 
