@@ -126,6 +126,28 @@ if (statsSection) {
   statsObserver.observe(statsSection);
 }
 
+// Observe new stats section for counter animation
+const statsSectionNew = document.querySelector(".stats-section");
+if (statsSectionNew) {
+  const statsSectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const statNumbersNew = entry.target.querySelectorAll(".stat-number");
+          statNumbersNew.forEach((stat) => {
+            if (stat.textContent === "0") {
+              animateCounter(stat);
+            }
+          });
+          statsSectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  statsSectionObserver.observe(statsSectionNew);
+}
+
 // ===== Scroll Animations for Elements =====
 const animateOnScroll = () => {
   const elements = document.querySelectorAll(
@@ -355,6 +377,38 @@ if (typeof gsap !== "undefined") {
       y: 0,
       duration: 0.6,
       delay: index * 0.08,
+      ease: "power2.out",
+    });
+  });
+
+  // Stats section cards animation
+  gsap.utils.toArray(".stat-card").forEach((card, index) => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 95%",
+        toggleActions: "play none none none",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.1,
+      ease: "power2.out",
+    });
+  });
+
+  // Timeline items animation
+  gsap.utils.toArray(".timeline-item").forEach((item, index) => {
+    gsap.to(item, {
+      scrollTrigger: {
+        trigger: item,
+        start: "top 95%",
+        toggleActions: "play none none none",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.15,
       ease: "power2.out",
     });
   });
