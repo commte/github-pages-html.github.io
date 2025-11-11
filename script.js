@@ -688,6 +688,131 @@ allNavLinks.forEach((link) => {
   });
 });
 
+// ===== Team Modal =====
+const teamModal = document.getElementById("team-modal");
+const teamModalClose = document.querySelector(".team-modal-close");
+const teamModalOverlay = document.querySelector(".team-modal-overlay");
+const teamCards = document.querySelectorAll(".team-card");
+
+// メンバー情報のデータ
+const teamMembers = {
+  sato: {
+    name: "佐藤 太郎",
+    role: "CEO / Founder",
+    description:
+      "15年以上のIT業界経験を持つビジョナリーリーダー。複数のスタートアップを立ち上げ、成功に導いてきました。ビジネス戦略と技術の両面に精通し、革新的なソリューションを提供します。",
+    skills: [
+      "ビジネス戦略",
+      "リーダーシップ",
+      "スタートアップ",
+      "投資",
+      "マーケティング",
+    ],
+    experience:
+      "複数のテック企業でCEOとして経験を積み、累計で100億円以上の資金調達を実現。業界をリードする企業の設立と成長を支援してきました。",
+    avatarColor: "#6366f1",
+  },
+  suzuki: {
+    name: "鈴木 花子",
+    role: "CTO",
+    description:
+      "技術革新を推進するテックリーダー。大規模システムの設計から実装まで、幅広い技術領域に精通しています。チームを率いて、高品質なプロダクト開発を実現します。",
+    skills: [
+      "クラウドアーキテクチャ",
+      "マイクロサービス",
+      "DevOps",
+      "AI/ML",
+      "セキュリティ",
+    ],
+    experience:
+      "大手IT企業で10年以上の開発経験を持ち、数百万ユーザーをサポートするシステムの構築に携わってきました。技術的な課題解決とチーム育成に定評があります。",
+    avatarColor: "#8b5cf6",
+  },
+  tanaka: {
+    name: "田中 次郎",
+    role: "デザインディレクター",
+    description:
+      "ユーザー体験を最優先に考えるデザイナー。データドリブンなアプローチで、ユーザーのニーズを深く理解し、直感的で美しいインターフェースを設計します。",
+    skills: [
+      "UI/UXデザイン",
+      "プロトタイピング",
+      "デザインシステム",
+      "ユーザーリサーチ",
+      "ブランディング",
+    ],
+    experience:
+      "大手Webサービス企業でデザインリーダーとして活躍し、多数の受賞歴を持つプロダクトのデザインを手がけてきました。ユーザー中心設計のエキスパートです。",
+    avatarColor: "#ec4899",
+  },
+};
+
+// モーダルを開く関数
+const openTeamModal = (memberId) => {
+  const member = teamMembers[memberId];
+  if (!member) return;
+
+  // モーダルに情報を設定
+  const modal = teamModal;
+  modal.querySelector(".team-modal-name").textContent = member.name;
+  modal.querySelector(".team-modal-role").textContent = member.role;
+  modal.querySelector(".team-modal-description").textContent =
+    member.description;
+  modal.querySelector(".team-modal-experience-text").textContent =
+    member.experience;
+
+  // アバターを設定
+  const avatarContainer = modal.querySelector(".team-modal-avatar");
+  avatarContainer.innerHTML = `
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" fill="${member.avatarColor}" />
+      <circle cx="50" cy="40" r="15" fill="#fff" />
+      <path d="M30 70 Q30 55 50 55 Q70 55 70 70 Z" fill="#fff" />
+    </svg>
+  `;
+
+  // スキルリストを設定
+  const skillsList = modal.querySelector(".team-modal-skills-list");
+  skillsList.innerHTML = member.skills
+    .map((skill) => `<li>${skill}</li>`)
+    .join("");
+
+  // モーダルを表示
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+};
+
+// モーダルを閉じる関数
+const closeTeamModal = () => {
+  teamModal.classList.remove("active");
+  document.body.style.overflow = "";
+};
+
+// チームカードにクリックイベントを追加
+teamCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const memberId = card.getAttribute("data-member");
+    if (memberId) {
+      openTeamModal(memberId);
+    }
+  });
+});
+
+// モーダルを閉じるイベント
+if (teamModalClose) {
+  teamModalClose.addEventListener("click", closeTeamModal);
+}
+
+if (teamModalOverlay) {
+  teamModalOverlay.addEventListener("click", closeTeamModal);
+}
+
+// ESCキーでモーダルを閉じる
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && teamModal.classList.contains("active")) {
+    closeTeamModal();
+  }
+});
+
 // ===== Initialize =====
 console.log("Sample Corp - Initialized with GSAP");
 console.log("Built with HTML, CSS, JavaScript, and GSAP");

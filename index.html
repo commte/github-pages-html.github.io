@@ -123,12 +123,12 @@
           </div>
           <div class="about-image">
             <div class="image-placeholder">
-              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="300" fill="#6366f1" />
-                <circle cx="200" cy="150" r="80" fill="#8b5cf6" opacity="0.5" />
-                <circle cx="250" cy="120" r="60" fill="#ec4899" opacity="0.5" />
-                <circle cx="150" cy="180" r="70" fill="#14b8a6" opacity="0.5" />
-              </svg>
+              <img
+                src="https://picsum.photos/600/400?random=10"
+                alt="会社概要"
+                loading="lazy"
+                onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 400 300\' xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'400\' height=\'300\' fill=\'#94a3b8\' /></svg>'"
+              />
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@
           <p class="section-subtitle">私たちのエキスパート</p>
         </div>
         <div class="team-grid">
-          <div class="team-card">
+          <div class="team-card" data-member="sato">
             <div class="team-image">
               <div class="avatar">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +277,7 @@
             <p class="team-role">CEO / Founder</p>
             <p class="team-bio">15年以上のIT業界経験を持つビジョナリー</p>
           </div>
-          <div class="team-card">
+          <div class="team-card" data-member="suzuki">
             <div class="team-image">
               <div class="avatar">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -291,7 +291,7 @@
             <p class="team-role">CTO</p>
             <p class="team-bio">技術革新を推進するテックリーダー</p>
           </div>
-          <div class="team-card">
+          <div class="team-card" data-member="tanaka">
             <div class="team-image">
               <div class="avatar">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -308,6 +308,40 @@
         </div>
       </div>
     </section>
+
+    <!-- チームメンバーモーダル -->
+    <div id="team-modal" class="team-modal">
+      <div class="team-modal-overlay"></div>
+      <div class="team-modal-content">
+        <button class="team-modal-close" aria-label="閉じる">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="team-modal-body">
+          <div class="team-modal-avatar"></div>
+          <h2 class="team-modal-name"></h2>
+          <p class="team-modal-role"></p>
+          <div class="team-modal-details">
+            <p class="team-modal-description"></p>
+            <div class="team-modal-skills">
+              <h4>スキル・専門分野</h4>
+              <ul class="team-modal-skills-list"></ul>
+            </div>
+            <div class="team-modal-experience">
+              <h4>経験・実績</h4>
+              <p class="team-modal-experience-text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ポートフォリオセクション -->
     <section id="portfolio" class="portfolio">
