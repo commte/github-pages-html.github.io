@@ -158,10 +158,40 @@ const animateOnScroll = () => {
 // Initialize scroll animations (will be replaced by GSAP)
 // animateOnScroll();
 
-// ===== Add loading animation =====
+// ===== Loader Animation =====
+const loader = document.getElementById("loader");
+
+// ページ読み込み時にbodyにloadingクラスを追加
+document.body.classList.add("loading");
+
+// ページ読み込み完了後にローダーを非表示
 window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
+  // 最小表示時間を確保（0.8秒）
+  setTimeout(() => {
+    if (loader) {
+      loader.classList.add("hidden");
+      document.body.classList.remove("loading");
+
+      // アニメーション完了後にDOMから削除
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 600);
+    }
+  }, 800);
 });
+
+// ページが既に読み込まれている場合（キャッシュなど）
+if (document.readyState === "complete") {
+  setTimeout(() => {
+    if (loader) {
+      loader.classList.add("hidden");
+      document.body.classList.remove("loading");
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 600);
+    }
+  }, 800);
+}
 
 // ===== Performance: Debounce scroll events =====
 const debounce = (func, wait) => {
