@@ -239,109 +239,108 @@ if (typeof gsap !== "undefined") {
 
   // Section animations - fade up on scroll
   gsap.utils.toArray(".section-header").forEach((header) => {
-    gsap.from(header, {
+    gsap.to(header, {
       scrollTrigger: {
         trigger: header,
-        start: "top 85%",
-        end: "top 60%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
     });
   });
 
   // Service cards animation
   gsap.utils.toArray(".service-card").forEach((card, index) => {
-    gsap.from(card, {
+    gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        start: "top 90%",
-        end: "top 65%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 80,
-      duration: 0.8,
-      delay: index * 0.1,
-      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.08,
+      ease: "power2.out",
     });
   });
 
   // Team cards animation
   gsap.utils.toArray(".team-card").forEach((card, index) => {
-    gsap.from(card, {
+    gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        start: "top 90%",
-        end: "top 65%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 80,
-      scale: 0.9,
-      duration: 0.8,
-      delay: index * 0.15,
-      ease: "back.out(1.7)",
-    });
-  });
-
-  // About section animation
-  gsap.from(".about-text", {
-    scrollTrigger: {
-      trigger: ".about-text",
-      start: "top 80%",
-      end: "top 55%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    x: -80,
-    duration: 1,
-    ease: "power3.out",
-  });
-
-  gsap.from(".about-image", {
-    scrollTrigger: {
-      trigger: ".about-image",
-      start: "top 80%",
-      end: "top 55%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    x: 80,
-    duration: 1,
-    ease: "power3.out",
-  });
-
-  // Stat items animation
-  gsap.utils.toArray(".stat-item").forEach((stat, index) => {
-    gsap.from(stat, {
-      scrollTrigger: {
-        trigger: stat,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      },
-      opacity: 0,
-      y: 40,
-      duration: 0.6,
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
       delay: index * 0.1,
       ease: "power2.out",
     });
   });
 
+  // About section animation
+  gsap.set(".about-text", { opacity: 0, x: -30 });
+  gsap.set(".about-image", { opacity: 0, x: 30 });
+
+  gsap.to(".about-text", {
+    scrollTrigger: {
+      trigger: ".about-text",
+      start: "top 95%",
+      toggleActions: "play none none none",
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.8,
+    ease: "power2.out",
+  });
+
+  gsap.to(".about-image", {
+    scrollTrigger: {
+      trigger: ".about-image",
+      start: "top 95%",
+      toggleActions: "play none none none",
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.8,
+    ease: "power2.out",
+  });
+
+  // Stat items animation
+  gsap.utils.toArray(".stat-item").forEach((stat, index) => {
+    gsap.set(stat, { opacity: 0, y: 20 });
+    gsap.to(stat, {
+      scrollTrigger: {
+        trigger: stat,
+        start: "top 95%",
+        toggleActions: "play none none none",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: index * 0.08,
+      ease: "power2.out",
+    });
+  });
+
   // Footer animation
-  gsap.from(".footer-section", {
+  gsap.set(".footer-section", { opacity: 0, y: 20 });
+  gsap.to(".footer-section", {
     scrollTrigger: {
       trigger: ".footer",
-      start: "top 90%",
-      toggleActions: "play none none reverse",
+      start: "top 95%",
+      toggleActions: "play none none none",
     },
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.2,
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    stagger: 0.15,
     ease: "power2.out",
   });
 
@@ -540,119 +539,115 @@ if (document.readyState === "loading") {
 if (typeof gsap !== "undefined") {
   // Portfolio items animation
   gsap.utils.toArray(".portfolio-item").forEach((item, index) => {
-    gsap.from(item, {
+    gsap.to(item, {
       scrollTrigger: {
         trigger: item,
-        start: "top 90%",
-        end: "top 65%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 60,
-      scale: 0.9,
-      duration: 0.6,
-      delay: index * 0.1,
-      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.08,
+      ease: "power2.out",
     });
   });
 
   // Portfolio filter buttons animation
-  gsap.from(".filter-btn", {
+  gsap.set(".filter-btn", { opacity: 0, y: 15 });
+  gsap.to(".filter-btn", {
     scrollTrigger: {
       trigger: ".portfolio-filters",
-      start: "top 85%",
-      toggleActions: "play none none reverse",
+      start: "top 95%",
+      toggleActions: "play none none none",
     },
-    opacity: 0,
-    y: 30,
+    opacity: 1,
+    y: 0,
     duration: 0.6,
-    stagger: 0.1,
-    ease: "power3.out",
+    stagger: 0.08,
+    ease: "power2.out",
   });
 
   // Partners animation
   const partnerLogos = document.querySelectorAll(".partner-logo");
   if (partnerLogos.length > 0) {
-    gsap.from(".partner-logo", {
+    gsap.set(".partner-logo", { opacity: 0, scale: 0.95 });
+    gsap.to(".partner-logo", {
       scrollTrigger: {
         trigger: ".partners",
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0.7,
-      scale: 0.9,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: "back.out(1.7)",
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
     });
   }
 
   // Pricing cards animation
   gsap.utils.toArray(".pricing-card").forEach((card, index) => {
-    gsap.from(card, {
+    gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        start: "top 85%",
-        end: "top 60%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 80,
-      scale: 0.9,
-      duration: 0.8,
-      delay: index * 0.15,
-      ease: "back.out(1.7)",
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.1,
+      ease: "power2.out",
     });
   });
 
   // Testimonial cards animation
   gsap.utils.toArray(".testimonial-card").forEach((card, index) => {
-    gsap.from(card, {
+    gsap.set(card, { opacity: 0, y: 30 });
+    gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        start: "top 90%",
-        end: "top 65%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      x: index % 2 === 0 ? -60 : 60,
-      duration: 0.8,
-      delay: index * 0.1,
-      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.08,
+      ease: "power2.out",
     });
   });
 
   // FAQ items animation
   gsap.utils.toArray(".faq-item").forEach((item, index) => {
-    gsap.from(item, {
+    gsap.to(item, {
       scrollTrigger: {
         trigger: item,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      x: -40,
+      opacity: 1,
+      x: 0,
       duration: 0.6,
-      delay: index * 0.1,
+      delay: index * 0.08,
       ease: "power2.out",
     });
   });
 
   // Blog cards animation
   gsap.utils.toArray(".blog-card").forEach((card, index) => {
-    gsap.from(card, {
+    gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        start: "top 90%",
-        end: "top 65%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       },
-      opacity: 0,
-      y: 60,
-      scale: 0.95,
-      duration: 0.8,
-      delay: index * 0.15,
-      ease: "power3.out",
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: index * 0.1,
+      ease: "power2.out",
     });
   });
 }
