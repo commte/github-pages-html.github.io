@@ -938,7 +938,6 @@ ul {
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
   font-size: 0.95rem;
 }
 
@@ -947,7 +946,6 @@ ul {
   background: var(--gradient-1);
   color: white;
   border-color: transparent;
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -1008,7 +1006,7 @@ ul {
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
-  opacity: 0;
+  opacity: 1;
   transition: var(--transition);
   color: white;
 }
